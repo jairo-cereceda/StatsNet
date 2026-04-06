@@ -1,0 +1,5 @@
+@let scl = StatisticCardList();
+
+@for (card of scl?.statistics; track card.name) {
+  <app-statistic-card [statisticCard]="card" />
+}
