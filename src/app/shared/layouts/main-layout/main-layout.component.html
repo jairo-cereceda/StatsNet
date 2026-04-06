@@ -1,0 +1,22 @@
+<div class="h-dvh flex flex-col bg-bg-secondary">
+  <header class="bg-bg text-text-secondary font-semibold p-4 rounded-b-xl">
+    <nav>
+      <ul class="flex justify-between">
+        <li>
+          <a routerLink="/"><h1>StatsNet</h1></a>
+        </li>
+        <li>
+          <a routerLink="/profile">Perfil</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="flex-1">
+    <router-outlet></router-outlet>
+  </main>
+
+  <footer class="bg-bg text-text-secondary p-4 rounded-t-xl">
+    <p>©StatsNet 2026</p>
+  </footer>
+</div>

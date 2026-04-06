@@ -1,3 +1,74 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import 'tailwindcss';
+
+@theme {
+  /*Fonts*/
+  --font-primary: 'Inter', sans-serif;
+
+  /*Colors*/
+  --color-bg: #0f172a;
+  --color-bg-secondary: #1e293b;
+  --color-surface: #334155;
+  --color-border: #475569;
+
+  --color-text: #f8fafc;
+  --color-text-secondary: #cbd5f5;
+  --color-text-tertiary: #94a3b8;
+
+  --color-primary: #3b82f6;
+  --color-primary-hover: #2563eb;
+
+  --color-secondary: #22c55e;
+
+  --color-accent: #f59e0b;
+  --color-info: #06b6d4;
+
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+
+  --color-success-bg: #14532d;
+  --color-warning-bg: #78350f;
+  --color-error-bg: #7f1d1d;
+  --color-info-bg: #164e63;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src:
+    url('/fonts/Inter_18pt-Regular.woff2') format('woff2'),
+    url('/fonts/Inter_18pt-Regular.woff') format('woff'),
+    url('/fonts/Inter_18pt-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src:
+    url('/fonts/Inter_18pt-Light.woff2') format('woff2'),
+    url('/fonts/Inter_18pt-Light.woff') format('woff'),
+    url('/fonts/Inter_18pt-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src:
+    url('/fonts/Inter_18pt-Bold.woff2') format('woff2'),
+    url('/fonts/Inter_18pt-Bold.woff') format('woff'),
+    url('/fonts/Inter_18pt-Bold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  body {
+    @apply font-primary;
+  }
+}
