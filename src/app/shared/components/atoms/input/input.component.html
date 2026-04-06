@@ -1,0 +1,15 @@
+<div class="flex flex-col gap-1">
+  <label [for]="input()?.id" class="text-text">{{ input()?.label }}</label>
+  <input
+    [type]="input()?.type"
+    [id]="input()?.id"
+    [name]="input()?.id"
+    [attr.placeholder]="input()?.placeholder ? input()?.placeholder : null"
+    class="border-border border rounded-2xl bg-bg text-text-secondary p-2"
+    [ngClass]="
+      input()?.type === 'number'
+        ? ' appearance-none [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none'
+        : ''
+    "
+  />
+</div>
