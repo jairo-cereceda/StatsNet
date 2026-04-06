@@ -1,6 +1,8 @@
 export interface ButtonComponentInterface {
-  type: 'button' | 'link';
+  type: 'button' | 'link' | 'icon-button';
   color: 'brand';
-  text: string;
+  text?: string;
+  icon?: string;
+  ariaLabel?: string;
   url?: string;
 }

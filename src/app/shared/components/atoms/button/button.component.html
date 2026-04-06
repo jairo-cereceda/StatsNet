@@ -3,9 +3,21 @@
 @if (b) {
   <div class="text-text font-semibold">
     @if (b.type === 'button') {
-      <button>{{ b.text }}</button>
+      <button
+        [attr.aria-label]="b.ariaLabel ? b.ariaLabel : null"
+        [ngClass]="{ 'bg-accent': b.color === 'brand' }"
+        class="cursor-pointer rounded-lg"
+      >
+        @if (b.text) {
+          {{ b.text }}
+        }
+
+        @if (b.icon) {
+          <img [src]="b.icon" />
+        }
+      </button>
     } @else if (b.type === 'link' && b.url) {
-      <a [routerLink]="b.url">{{ b.text }}</a>
+      <a [routerLink]="b.url" class="cursor-pointer">{{ b.text }}</a>
     }
   </div>
 }
