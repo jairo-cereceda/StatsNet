@@ -1,7 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { ProfileCardComponent } from '../../shared/components/organisms/profile-card/profile-card.component';
 import { ProfileCardComponentInterface } from '../../shared/components/organisms/profile-card/profile-card.interface';
-import { TitleComponent } from '../../shared/components/atoms/title/title.component';
 import { StatisticCardListComponent } from '../../shared/components/organisms/statistic-card-list/statistic-card-list.component';
 import { StatisticCardListComponentInterface } from '../../shared/components/organisms/statistic-card-list/statistic-card-list.interface';
 import { TitleButtonComponent } from '../../shared/components/molecules/title-button/title-button.component';
@@ -10,7 +9,7 @@ import { TitleButtonComponentInterface } from '../../shared/components/molecules
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  imports: [ProfileCardComponent, TitleComponent, StatisticCardListComponent, TitleButtonComponent],
+  imports: [ProfileCardComponent, StatisticCardListComponent, TitleButtonComponent],
 })
 export class ProfileComponent {
   isLoggedAccount = true;
