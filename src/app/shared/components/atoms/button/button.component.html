@@ -1,0 +1,11 @@
+@let b = button();
+
+@if (b) {
+  <div class="text-text font-semibold">
+    @if (b.type === 'button') {
+      <button>{{ b.text }}</button>
+    } @else if (b.type === 'link' && b.url) {
+      <a [routerLink]="b.url">{{ b.text }}</a>
+    }
+  </div>
+}
