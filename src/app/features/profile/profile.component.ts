@@ -30,7 +30,18 @@ export class ProfileComponent {
   statisticCardList: StatisticCardListComponentInterface = {
     statistics: [
       {
-        name: { type: 'sm', text: 'Croquetas' },
+        name: {
+          type: 'sm',
+          text: 'Croquetas',
+        },
+        quantity: 10,
+        isLoggedAccount: this.isLoggedAccount,
+      },
+      {
+        name: {
+          type: 'sm',
+          text: 'Croquetas',
+        },
         quantity: 10,
         isLoggedAccount: this.isLoggedAccount,
       },

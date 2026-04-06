@@ -1,13 +1,13 @@
 @if (statisticCard()?.isLoggedAccount) {
   <button
-    class="p-2 bg-primary rounded-2xl flex justify-between items-center w-full cursor-pointer"
+    class="p-2 bg-primary rounded-2xl grid grid-cols-[1fr_auto] items-center gap-x-2 cursor-pointer w-full"
   >
-    <app-title [title]="statisticCard()?.name" />
-    <p class="text-text text-4xl">{{ statisticCard()?.quantity }}</p>
+    <app-title class="wrap-break-word min-w-0 text-left" [title]="statisticCard()?.name" />
+    <p class="text-text text-4xl whitespace-nowrap">{{ statisticCard()?.quantity }}</p>
   </button>
 } @else {
   <div class="p-2 bg-primary rounded-2xl flex justify-between items-center">
-    <app-title [title]="statisticCard()?.name" />
+    <app-title class="wrap-break-word min-w-0 text-left" [title]="statisticCard()?.name" />
     <p class="text-text text-4xl">{{ statisticCard()?.quantity }}</p>
   </div>
 }
