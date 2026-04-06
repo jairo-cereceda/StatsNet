@@ -1,0 +1,13 @@
+@let t = title();
+
+@if (t) {
+  <div class="text-text font-semibold">
+    @if (t.type === 'lg') {
+      <h1 class="text-3xl">{{ t.text }}</h1>
+    } @else if (t.type === 'md') {
+      <h2>{{ t.text }}</h2>
+    } @else {
+      <h3>{{ t.text }}</h3>
+    }
+  </div>
+}
