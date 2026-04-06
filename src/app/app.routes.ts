@@ -1,11 +1,24 @@
 import { Routes } from '@angular/router';
 import { MainLayoutComponent } from './shared/layouts/main-layout/main-layout.component';
 import { ProfileComponent } from './features/profile/profile.component';
+import { AuthLayoutComponent } from './shared/layouts/auth-layout/auth-layout.component';
+import { LoginComponent } from './features/auth/login/login.component';
 
 export const routes: Routes = [
   {
     path: '',
     component: MainLayoutComponent,
     children: [{ path: 'profile', component: ProfileComponent }],
+  },
+  {
+    path: 'auth',
+    component: AuthLayoutComponent,
+    children: [
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
+      {
+        path: 'login',
+        component: LoginComponent,
+      },
+    ],
   },
 ];
