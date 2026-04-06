@@ -4,11 +4,13 @@ import { ProfileCardComponentInterface } from '../../shared/components/organisms
 import { TitleComponent } from '../../shared/components/atoms/title/title.component';
 import { StatisticCardListComponent } from '../../shared/components/organisms/statistic-card-list/statistic-card-list.component';
 import { StatisticCardListComponentInterface } from '../../shared/components/organisms/statistic-card-list/statistic-card-list.interface';
+import { TitleButtonComponent } from '../../shared/components/molecules/title-button/title-button.component';
+import { TitleButtonComponentInterface } from '../../shared/components/molecules/title-button/title-button.interface';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  imports: [ProfileCardComponent, TitleComponent, StatisticCardListComponent],
+  imports: [ProfileCardComponent, TitleComponent, StatisticCardListComponent, TitleButtonComponent],
 })
 export class ProfileComponent {
   isLoggedAccount = true;
@@ -33,5 +35,15 @@ export class ProfileComponent {
         isLoggedAccount: this.isLoggedAccount,
       },
     ],
+  };
+
+  titleButton: TitleButtonComponentInterface = {
+    title: { type: 'md', text: 'Estadísticas' },
+    button: {
+      type: 'button',
+      color: 'brand',
+      icon: '/icons/mdi--plus-thick.svg',
+      ariaLabel: 'Añadir estadistica',
+    },
   };
 }
