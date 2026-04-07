@@ -4,12 +4,16 @@ import { ProfileComponent } from './features/profile/profile.component';
 import { AuthLayoutComponent } from './shared/layouts/auth-layout/auth-layout.component';
 import { LoginComponent } from './features/auth/login/login.component';
 import { RegisterComponent } from './features/auth/register/register.component';
+import { HomeComponent } from './features/home/home.component';
 
 export const routes: Routes = [
   {
     path: '',
     component: MainLayoutComponent,
-    children: [{ path: 'profile', component: ProfileComponent }],
+    children: [
+      { path: '', component: HomeComponent },
+      { path: 'profile', component: ProfileComponent },
+    ],
   },
   {
     path: 'auth',
