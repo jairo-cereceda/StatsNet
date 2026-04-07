@@ -1,6 +1,9 @@
 @let scl = StatisticCardList();
 
 <div class="flex flex-col gap-2">
+  @if (scl?.title) {
+    <app-title [title]="scl?.title" />
+  }
   @for (card of scl?.statistics; track card.name) {
     <app-statistic-card [statisticCard]="card" />
   }
