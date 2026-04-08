@@ -7,6 +7,7 @@
         [attr.aria-label]="b.ariaLabel ? b.ariaLabel : null"
         [ngClass]="{ 'bg-accent': b.color === 'brand' }"
         class="cursor-pointer rounded-lg"
+        (click)="b.event ? b.event() : null"
       >
         @if (b.text) {
           {{ b.text }}

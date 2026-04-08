@@ -1,3 +1,5 @@
+import { EventEmitter } from '@angular/core';
+
 export interface ButtonComponentInterface {
   type: 'button' | 'link' | 'icon-button';
   color: 'brand';
@@ -5,4 +7,5 @@ export interface ButtonComponentInterface {
   icon?: string;
   ariaLabel?: string;
   url?: string;
+  event?: () => void;
 }
