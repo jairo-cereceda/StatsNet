@@ -5,14 +5,26 @@ import { StatisticCardListComponent } from '../../shared/components/organisms/st
 import { StatisticCardListComponentInterface } from '../../shared/components/organisms/statistic-card-list/statistic-card-list.interface';
 import { TitleButtonComponent } from '../../shared/components/molecules/title-button/title-button.component';
 import { TitleButtonComponentInterface } from '../../shared/components/molecules/title-button/title-button.interface';
+import { ActionSheetComponent } from '../../shared/components/organisms/action-sheet/action-sheet.component';
+import { ActionSheetComponentInterface } from '../../shared/components/organisms/action-sheet/action-sheet.interface';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Form } from '../../shared/components/molecules/form/form.component';
+import { FormComponentInterface } from '../../shared/components/molecules/form/form.interface';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  imports: [ProfileCardComponent, StatisticCardListComponent, TitleButtonComponent],
+  imports: [
+    ProfileCardComponent,
+    StatisticCardListComponent,
+    TitleButtonComponent,
+    ActionSheetComponent,
+    Form,
+  ],
 })
 export class ProfileComponent {
   isLoggedAccount = true;
+  isCreateStatisticFormOpen = signal(false);
 
   profileCard: ProfileCardComponentInterface = {
     userName: { type: 'lg', text: 'Juan' },
@@ -56,6 +68,39 @@ export class ProfileComponent {
       color: 'brand',
       icon: '/icons/mdi--plus-thick.svg',
       ariaLabel: 'Añadir estadistica',
+      event: () => this.openCreateStatisticHandler(),
     },
   };
+
+  statisticForm: FormComponentInterface = {
+    inputs: [
+      {
+        type: 'text',
+        placeholder: 'Ej: croquetas',
+        id: 'name',
+        formControlName: 'name',
+        label: 'Nombre',
+      },
+      {
+        type: 'number',
+        placeholder: 'Cantidad',
+        id: 'quantity',
+        formControlName: 'quantity',
+        label: 'Ej: 10',
+      },
+    ],
+
+    formGroup: new FormGroup({
+      name: new FormControl<string>('', { nonNullable: true }),
+      quantity: new FormControl<number>(0, { nonNullable: true }),
+    }),
+  };
+
+  actionSheet: ActionSheetComponentInterface = {
+    title: { type: 'md', text: 'Estadísticas' },
+  };
+
+  openCreateStatisticHandler() {
+    this.isCreateStatisticFormOpen.update((v) => !v);
+  }
 }

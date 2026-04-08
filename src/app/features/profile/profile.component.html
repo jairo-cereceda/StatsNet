@@ -2,4 +2,12 @@
   <app-profile-card [profileCard]="profileCard" />
   <app-title-button [titleButton]="titleButton" />
   <app-statistic-card-list [StatisticCardList]="statisticCardList" />
+
+  <app-action-sheet
+    [actionSheet]="actionSheet"
+    [isOpen]="isCreateStatisticFormOpen()"
+    (closed)="isCreateStatisticFormOpen.update((v) => v = false)"
+  >
+    <app-form [form]="statisticForm" />
+  </app-action-sheet>
 </div>
