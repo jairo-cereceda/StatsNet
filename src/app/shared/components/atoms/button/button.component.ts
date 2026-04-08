@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, EventEmitter, input, Output } from '@angular/core';
 import { ButtonComponentInterface } from './button.interface';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -10,4 +10,9 @@ import { CommonModule } from '@angular/common';
 })
 export class ButtonComponent {
   button = input<ButtonComponentInterface>();
+  @Output() clicked = new EventEmitter<void>();
+
+  onClick() {
+    this.clicked.emit();
+  }
 }
