@@ -1,0 +1,9 @@
+@let sf = form();
+
+@if (sf) {
+  <form [formGroup]="sf.formGroup">
+    @for (input of sf.inputs; track input.id) {
+      <app-input [input]="input" />
+    }
+  </form>
+}
