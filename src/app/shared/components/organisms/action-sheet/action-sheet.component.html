@@ -1,0 +1,25 @@
+@let acs = actionSheet();
+
+<div
+  class="fixed h-full w-full top-0 left-0 bg-backdrop transition duration-300 ease-out"
+  [class.opacity-0]="!isOpen()"
+  [class.pointer-events-none]="!isOpen()"
+>
+  <div
+    #sheetRef
+    class="absolute rounded-t-3xl bg-bg max-h-[90%] bottom-0 w-full p-4 transition-transform duration-300 ease-out"
+    [class.translate-y-full]="!isOpen()"
+  >
+    <button
+      class="flex justify-center w-full mb-2 cursor-grab"
+      aria-label="Cerrar panel"
+      (pointerdown)="onDragStart($event)"
+    >
+      <span class="w-10 h-1.5 bg-gray-400 rounded-full"></span>
+    </button>
+    <app-title [title]="acs?.title" class="text-center" />
+    <div class="bg-bg-secondary h-full rounded-t-2xl mt-2 p-4">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>
