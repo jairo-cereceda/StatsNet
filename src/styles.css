@@ -32,6 +32,8 @@
   --color-warning-bg: #78350f;
   --color-error-bg: #7f1d1d;
   --color-info-bg: #164e63;
+
+  --color-backdrop: #00000040;
 }
 
 @font-face {
