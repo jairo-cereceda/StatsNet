@@ -1,7 +1,12 @@
-import { Component, input } from '@angular/core';
+import { Component, Input, input } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { InputComponentInterface } from './input.interface';
-import { ControlContainer, FormGroupDirective, ReactiveFormsModule } from '@angular/forms';
+import {
+  ControlContainer,
+  FormGroup,
+  FormGroupDirective,
+  ReactiveFormsModule,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-input',
@@ -11,4 +16,10 @@ import { ControlContainer, FormGroupDirective, ReactiveFormsModule } from '@angu
 })
 export class InputComponent {
   input = input<InputComponentInterface>();
+
+  @Input() formGroup!: FormGroup;
+
+  get control() {
+    return this.formGroup.get(this.input()!.formControlName);
+  }
 }
