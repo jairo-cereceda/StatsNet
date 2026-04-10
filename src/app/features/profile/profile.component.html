@@ -8,6 +8,6 @@
     [isOpen]="isCreateStatisticFormOpen()"
     (closed)="isCreateStatisticFormOpen.update((v) => v = false)"
   >
-    <app-form [form]="statisticForm" />
+    <app-form [form]="statisticForm" (submitValid)="createStatistic($event)" />
   </app-action-sheet>
 </div>

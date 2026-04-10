@@ -78,23 +78,35 @@ export class ProfileComponent {
         type: 'text',
         placeholder: 'Ej: croquetas',
         id: 'name',
+        isRequired: true,
         formControlName: 'name',
+        errorMessage: 'Introduce un contenido válido',
         label: 'Nombre',
       },
       {
         type: 'number',
         id: 'quantity',
+        isRequired: true,
         formControlName: 'quantity',
+        placeholder: 'Ej: 10',
+        errorMessage: 'Introduce un número válido',
         label: 'Cantidad',
       },
     ],
 
-    onSubmit: () => this.createStatistic(),
+    submitBtn: {
+      type: 'submit',
+      text: 'Publicar',
+      size: 'full',
+      color: 'brand',
+    },
 
     formGroup: new FormGroup({
-      name: new FormControl<string>('', { nonNullable: true }),
-      quantity: new FormControl<number>(0, {
+      name: new FormControl<string>('', {
         nonNullable: true,
+        validators: [Validators.required, Validators.minLength(1)],
+      }),
+      quantity: new FormControl<number | null>(null, {
         validators: [Validators.required, Validators.min(1)],
       }),
     }),
@@ -105,14 +117,21 @@ export class ProfileComponent {
   };
 
   openCreateStatisticHandler() {
-    this.isCreateStatisticFormOpen.update((v) => !v);
+    this.isCreateStatisticFormOpen.set(true);
   }
 
-  createStatistic() {
-    this.openCreateStatisticHandler();
+  closeCreateStatisticHandler() {
+    this.isCreateStatisticFormOpen.set(false);
+  }
+
+  createStatistic(value: any) {
+    console.log(value);
+
     this.statisticForm.formGroup.reset({
       name: '',
       quantity: 0,
     });
+
+    this.isCreateStatisticFormOpen.set(false);
   }
 }
