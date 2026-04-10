@@ -7,7 +7,7 @@ import { TitleButtonComponent } from '../../shared/components/molecules/title-bu
 import { TitleButtonComponentInterface } from '../../shared/components/molecules/title-button/title-button.interface';
 import { ActionSheetComponent } from '../../shared/components/organisms/action-sheet/action-sheet.component';
 import { ActionSheetComponentInterface } from '../../shared/components/organisms/action-sheet/action-sheet.interface';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Form } from '../../shared/components/molecules/form/form.component';
 import { FormComponentInterface } from '../../shared/components/molecules/form/form.interface';
 
@@ -83,16 +83,20 @@ export class ProfileComponent {
       },
       {
         type: 'number',
-        placeholder: 'Cantidad',
         id: 'quantity',
         formControlName: 'quantity',
-        label: 'Ej: 10',
+        label: 'Cantidad',
       },
     ],
 
+    onSubmit: () => this.createStatistic(),
+
     formGroup: new FormGroup({
       name: new FormControl<string>('', { nonNullable: true }),
-      quantity: new FormControl<number>(0, { nonNullable: true }),
+      quantity: new FormControl<number>(0, {
+        nonNullable: true,
+        validators: [Validators.required, Validators.min(1)],
+      }),
     }),
   };
 
@@ -102,5 +106,13 @@ export class ProfileComponent {
 
   openCreateStatisticHandler() {
     this.isCreateStatisticFormOpen.update((v) => !v);
+  }
+
+  createStatistic() {
+    this.openCreateStatisticHandler();
+    this.statisticForm.formGroup.reset({
+      name: '',
+      quantity: 0,
+    });
   }
 }
