@@ -1,13 +1,15 @@
 @let acs = actionSheet();
 
 <div
-  class="fixed h-full w-full top-0 left-0 bg-backdrop transition duration-300 ease-out"
+  class="fixed h-full w-full top-0 left-0 bg-backdrop"
   [class.opacity-0]="!isOpen()"
+  [ngClass]="{ 'transition-transform duration-300 ease-out': hasBeenOpened }"
   [class.pointer-events-none]="!isOpen()"
 >
   <div
     #sheetRef
-    class="absolute rounded-t-3xl bg-bg max-h-[90%] bottom-0 w-full p-4 transition-transform duration-300 ease-out"
+    class="absolute rounded-t-3xl bg-bg max-h-[90%] bottom-0 w-full p-4"
+    [ngClass]="{ 'transition-transform duration-300 ease-out': hasBeenOpened }"
     [class.translate-y-full]="!isOpen()"
   >
     <button

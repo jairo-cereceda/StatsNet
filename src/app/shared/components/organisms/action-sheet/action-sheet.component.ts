@@ -10,21 +10,24 @@ import {
 } from '@angular/core';
 import { TitleComponent } from '../../atoms/title/title.component';
 import { ActionSheetComponentInterface } from './action-sheet.interface';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-action-sheet',
   templateUrl: './action-sheet.component.html',
-  imports: [TitleComponent],
+  imports: [TitleComponent, CommonModule],
 })
 export class ActionSheetComponent {
   actionSheet = input<ActionSheetComponentInterface>();
   isOpen = input<boolean>();
   @Output() closed = new EventEmitter<void>();
   @ViewChild('sheetRef') sheet!: ElementRef;
+  hasBeenOpened = false;
 
   constructor() {
     effect(() => {
       if (this.isOpen()) {
+        this.hasBeenOpened = true;
         const panel = this.sheet?.nativeElement;
         if (panel) {
           panel.style.transform = 'translateY(0)';
