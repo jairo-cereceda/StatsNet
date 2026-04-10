@@ -2,12 +2,16 @@
 
 @if (b) {
   <div class="text-text font-semibold">
-    @if (b.type === 'button') {
+    @if (b.type === 'button' || b.type === 'submit') {
       <button
         [attr.aria-label]="b.ariaLabel ? b.ariaLabel : null"
-        [ngClass]="{ 'bg-accent': b.color === 'brand' }"
+        [ngClass]="{
+          'bg-accent active:bg-accent-active': b.color === 'brand',
+          'w-full p-3': b.size === 'full',
+        }"
         class="cursor-pointer rounded-lg"
         (click)="b.event ? b.event() : null"
+        [attr.type]="b.type === 'submit' ? 'submit' : null"
       >
         @if (b.text) {
           {{ b.text }}
