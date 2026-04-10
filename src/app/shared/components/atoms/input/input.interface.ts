@@ -3,6 +3,8 @@ export interface InputComponentInterface {
   id: string;
   placeholder?: string;
   label: string;
+  errorMessage?: string;
+  isRequired?: boolean;
   hideLabel?: boolean;
   formControlName: string;
   icon?: string;
