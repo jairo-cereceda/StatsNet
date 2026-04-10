@@ -3,11 +3,12 @@ import { FormComponentInterface } from './form.interface';
 import { InputComponent } from '../../atoms/input/input.component';
 import { ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
 import { InputComponentInterface } from '../../atoms/input/input.interface';
+import { ButtonComponent } from '../../atoms/button/button.component';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
-  imports: [InputComponent, ReactiveFormsModule],
+  imports: [InputComponent, ReactiveFormsModule, ButtonComponent],
 })
 export class Form {
   form = input<FormComponentInterface>();

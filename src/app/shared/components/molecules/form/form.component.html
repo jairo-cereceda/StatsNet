@@ -8,13 +8,8 @@
       }
     </div>
 
-    <button
-      type="submit"
-      class="w-full text-center p-4 bg-accent rounded-3xl font-semibold text-text cursor-pointer active:bg-accent-active"
-      [disabled]="formGroup.invalid"
-      (click)="formGroup.valid ? sf?.onSubmit() : null"
-    >
-      Publicar
-    </button>
+    @if (sf?.submitBtn) {
+      <app-button [button]="sf.submitBtn" />
+    }
   </form>
 }
