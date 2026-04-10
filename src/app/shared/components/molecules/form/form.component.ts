@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, EventEmitter, input, Output } from '@angular/core';
 import { FormComponentInterface } from './form.interface';
 import { InputComponent } from '../../atoms/input/input.component';
 import { ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
@@ -13,12 +13,22 @@ import { ButtonComponent } from '../../atoms/button/button.component';
 export class Form {
   form = input<FormComponentInterface>();
   formGroup!: FormGroup;
+  @Output() submitValid = new EventEmitter<any>();
 
   ngOnInit() {
     const sf = this.form();
     if (sf) {
       this.formGroup = sf.formGroup ?? buildFormGroup(sf.inputs);
     }
+  }
+
+  handleSubmit() {
+    if (!this.formGroup.valid) {
+      this.formGroup.markAllAsTouched();
+      return;
+    }
+
+    this.submitValid.emit(this.formGroup.getRawValue());
   }
 }
 

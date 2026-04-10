@@ -1,10 +1,10 @@
 @let sf = form();
 
 @if (sf) {
-  <form [formGroup]="formGroup" class="flex flex-col gap-4">
+  <form [formGroup]="formGroup" (ngSubmit)="handleSubmit()" class="flex flex-col gap-4">
     <div class="flex flex-col gap-2">
       @for (input of sf.inputs; track input.id) {
-        <app-input [input]="input" />
+        <app-input [input]="input" [formGroup]="formGroup" />
       }
     </div>
 
