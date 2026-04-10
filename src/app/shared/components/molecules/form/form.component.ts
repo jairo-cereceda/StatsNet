@@ -17,7 +17,6 @@ export class Form {
     const sf = this.form();
     if (sf) {
       this.formGroup = sf.formGroup ?? buildFormGroup(sf.inputs);
-      sf.formGroup = this.formGroup;
     }
   }
 }
