@@ -1,6 +1,7 @@
-<form [formGroup]="registerForm" class="flex flex-col gap-4 w-full">
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-4 w-full">
   <div class="rounded-4xl bg-bg border border-border p-5 flex flex-col gap-4">
     <app-title class="text-center" [title]="registerTitle" />
+    <app-input [input]="userInput" [formGroup]="registerForm" />
     <app-input [input]="emailInput" [formGroup]="registerForm" />
     <app-input [input]="passwordInput" [formGroup]="registerForm" />
     <app-input [input]="repeatPasswordInput" [formGroup]="registerForm" />
