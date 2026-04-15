@@ -5,11 +5,14 @@ import { AuthLayoutComponent } from './shared/layouts/auth-layout/auth-layout.co
 import { LoginComponent } from './features/auth/login/login.component';
 import { RegisterComponent } from './features/auth/register/register.component';
 import { HomeComponent } from './features/home/home.component';
+import { authGuard } from './core/guards/auth-guard';
+import { noAuthGuard } from './core/guards/no-auth-guard';
 
 export const routes: Routes = [
   {
     path: '',
     component: MainLayoutComponent,
+    canActivate: [authGuard],
     children: [
       { path: '', component: HomeComponent },
       { path: 'profile', component: ProfileComponent },
@@ -18,6 +21,7 @@ export const routes: Routes = [
   {
     path: 'auth',
     component: AuthLayoutComponent,
+    canActivate: [noAuthGuard],
     children: [
       { path: '', redirectTo: 'login', pathMatch: 'full' },
       {
