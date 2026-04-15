@@ -1,4 +1,4 @@
-<form [formGroup]="loginForm" class="flex flex-col gap-4 w-full">
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-4 w-full">
   <div class="rounded-4xl bg-bg border border-border p-5 flex flex-col gap-4">
     <app-title class="text-center" [title]="loginTitle" />
     <app-input [input]="emailInput" [formGroup]="loginForm" />
