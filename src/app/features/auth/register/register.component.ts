@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -6,24 +6,32 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { InputComponent } from '../../../shared/components/atoms/input/input.component';
 import { InputComponentInterface } from '../../../shared/components/atoms/input/input.interface';
 import { TitleComponent } from '../../../shared/components/atoms/title/title.component';
 import { TitleComponentInterface } from '../../../shared/components/atoms/title/title.interface';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
 import { ValidationService } from '../../../core/services/validation/validation.service';
+import { Router } from '@angular/router';
+import { ToastComponent } from '../../../shared/components/molecules/toast/toast.component';
+import { InputComponent } from '../../../shared/components/atoms/input/input.component';
+import { ToastComponentInterface } from '../../../shared/components/molecules/toast/toast.interface';
+import { ErrorService } from '../../../core/services/error/error.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  imports: [ReactiveFormsModule, InputComponent, TitleComponent, RouterLink],
+  imports: [ReactiveFormsModule, InputComponent, TitleComponent, RouterLink, ToastComponent],
 })
 export class RegisterComponent {
   constructor(
     private authService: AuthService,
     private validationService: ValidationService,
+    private errorService: ErrorService,
+    private router: Router,
   ) {}
+
+  isToastShown = signal(false);
 
   registerForm = new FormGroup({
     username: new FormControl('', {
@@ -47,6 +55,11 @@ export class RegisterComponent {
   registerTitle: TitleComponentInterface = {
     type: 'lg',
     text: 'Regístrate',
+  };
+
+  toast: ToastComponentInterface = {
+    type: 'error',
+    content: '',
   };
 
   get userInput(): InputComponentInterface {
@@ -118,8 +131,22 @@ export class RegisterComponent {
 
     try {
       await this.authService.signUp(email!, password!, username!, username!);
-      console.log('¡Cuenta creada!');
+      this.toast.content = '¡Cuenta creada!';
+      this.toast.type = 'success';
+
+      this.isToastShown.set(true);
+      setTimeout(() => {
+        this.isToastShown.set(false);
+        this.router.navigate(['/auth/login']);
+      }, 2000);
     } catch (error: any) {
+      this.toast.content = this.errorService.getAuthErrorMessage(error);
+      this.toast.type = 'error';
+
+      this.isToastShown.set(true);
+      setTimeout(() => {
+        this.isToastShown.set(false);
+      }, 3000);
       console.error('Error: ' + error.message);
     }
   }
