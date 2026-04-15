@@ -71,6 +71,11 @@ export class AuthService {
     });
 
     if (error) throw error;
+
+    if (data.user && data.user.identities && data.user.identities.length === 0) {
+      throw { message: 'User already registered' };
+    }
+    console.log('Registro exitoso, revisa tu correo.');
     return data;
   }
 }
