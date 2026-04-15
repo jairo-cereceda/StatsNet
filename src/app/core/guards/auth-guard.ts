@@ -9,7 +9,7 @@ export const authGuard: CanActivateFn = async (route, state) => {
 
   const user = await authService.getUser();
 
-  if (!user) {
+  if (user) {
     return true;
   }
 
