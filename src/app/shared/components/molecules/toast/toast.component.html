@@ -1,0 +1,24 @@
+@let t = toast();
+
+<div
+  class="absolute top-5 left-0 w-full transition duration-200 ease-out"
+  [class.opacity-0]="!isShown()"
+  [class.-translate-y-5]="!isShown()"
+  [class.pointer-events-none]="!isShown()"
+  [attr.aria-hidden]="!isShown()"
+  [attr.inert]="!isShown() ? '' : null"
+>
+  <div
+    class="border border-border rounded-3xl p-2 mx-2"
+    [class.bg-success]="t?.type === 'success'"
+    [class.bg-error]="t?.type === 'error'"
+    [class.bg-info]="t?.type === 'info'"
+    role="status"
+    aria-live="polite"
+  >
+    @if (t?.title) {
+      <app-title [title]="t?.title" />
+    }
+    <p class="text-text">{{ t?.content }}</p>
+  </div>
+</div>
