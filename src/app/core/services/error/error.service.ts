@@ -20,6 +20,9 @@ export class ErrorService {
       case msg.includes('email rate limit exceeded'):
         return 'Ha ocurrido un problema, por favor inténtelo más tarde';
 
+      case msg.includes('Email not confirmed'):
+        return 'Email no verificado, por favor revisa tu correo';
+
       default:
         return 'Ha ocurrido un error inesperado';
     }
