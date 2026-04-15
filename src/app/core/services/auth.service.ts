@@ -53,6 +53,12 @@ export class AuthService {
     return data;
   }
 
+  async getUser() {
+    const { data, error } = await this.supabaseService.supabase.auth.getUser();
+    if (error) return null;
+    return data.user;
+  }
+
   async logout() {
     await this.supabaseService.supabase.auth.signOut();
     this.router.navigate(['/auth/login']);
