@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, EventEmitter, input, Output } from '@angular/core';
 import { StatisticCardListComponentInterface } from './statistic-card-list.interface';
 import { StatisticCardComponent } from '../../molecules/statistic-card/statistic-card.component';
 import { TitleComponent } from '../../atoms/title/title.component';
@@ -10,4 +10,10 @@ import { TitleComponent } from '../../atoms/title/title.component';
 })
 export class StatisticCardListComponent {
   StatisticCardList = input<StatisticCardListComponentInterface>();
+
+  @Output() editStatistic = new EventEmitter<{ item: any; index: number }>();
+
+  onEditClick(item: any, index: number) {
+    this.editStatistic.emit({ item, index });
+  }
 }

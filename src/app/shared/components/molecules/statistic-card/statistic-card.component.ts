@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, EventEmitter, input, Output } from '@angular/core';
 import { StatisticCardComponentInterface } from './statistic-card.interface';
 import { TitleComponent } from '../../atoms/title/title.component';
 import { RouterLink } from '@angular/router';
@@ -10,4 +10,10 @@ import { RouterLink } from '@angular/router';
 })
 export class StatisticCardComponent {
   statisticCard = input<StatisticCardComponentInterface>();
+
+  @Output() clicked = new EventEmitter<void>();
+
+  onClick() {
+    this.clicked.emit();
+  }
 }

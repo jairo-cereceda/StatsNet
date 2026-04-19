@@ -5,6 +5,6 @@
     <app-title [title]="scl?.title" />
   }
   @for (card of scl?.statistics; track card.name) {
-    <app-statistic-card [statisticCard]="card" />
+    <app-statistic-card [statisticCard]="card" (clicked)="onEditClick(card, $index)" />
   }
 </div>
