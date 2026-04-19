@@ -3,6 +3,7 @@
 @if (sc?.isLoggedAccount) {
   <button
     class="p-2 bg-primary rounded-2xl grid grid-cols-[1fr_auto] items-center gap-x-2 cursor-pointer w-full"
+    (click)="onClick()"
   >
     <app-title class="wrap-break-word min-w-0 text-left" [title]="sc?.name" />
     <p class="text-text text-4xl whitespace-nowrap">{{ sc?.quantity }}</p>

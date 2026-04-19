@@ -1,13 +1,16 @@
 <div class="flex flex-col gap-4">
-  <app-profile-card [profileCard]="profileCard" />
+  <app-profile-card [profileCard]="profileCard()" />
   <app-title-button [titleButton]="titleButton" />
-  <app-statistic-card-list [StatisticCardList]="statisticCardList" />
+  <app-statistic-card-list
+    [StatisticCardList]="statisticCardList()"
+    (editStatistic)="openUpdateStaticticHandler($event)"
+  />
 
   <app-action-sheet
     [actionSheet]="actionSheet"
     [isOpen]="isCreateStatisticFormOpen()"
     (closed)="isCreateStatisticFormOpen.update((v) => v = false)"
   >
-    <app-form [form]="statisticForm" (submitValid)="createStatistic($event)" />
+    <app-form [form]="statisticForm" (submitValid)="handleStatisticSubmit($event)" />
   </app-action-sheet>
 </div>

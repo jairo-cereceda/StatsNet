@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, from, map, Observable } from 'rxjs';
 import { SupabaseClientService } from './supabase-client.service';
 import { Database } from '../models/database.types';
 
-type Profile = Database['public']['Tables']['profiles']['Row'];
+export type Profile = Database['public']['Tables']['profiles']['Row'];
 
 @Injectable({
   providedIn: 'root',
@@ -37,6 +37,24 @@ export class AuthService {
     if (!error) {
       this.userProfile.next(data);
     }
+  }
+
+  fetchProfileByUsername(userName: string): Observable<Profile | null> {
+    const query = this.supabaseService.supabase
+      .from('profiles')
+      .select('*')
+      .eq('username', userName)
+      .single();
+
+    return from(query).pipe(
+      map((res) => {
+        if (res.error && res.error.code === 'PGRST116') {
+          return null;
+        }
+        if (res.error) throw res.error;
+        return res.data;
+      }),
+    );
   }
 
   get currentUserValue() {
